@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muhammad Naufal Akbar | Finance Analytics Portfolio</title>
+  <style>
+    :root {
+      --blue-900: #0f3d5e;
+      --blue-700: #176b9a;
+      --blue-500: #38a9e8;
+      --blue-100: #e7f7ff;
+      --white: #ffffff;
+      --grey-100: #f6fbff;
+      --grey-300: #d9edf8;
+      --text: #17324d;
+      --muted: #5f7890;
+      --shadow: 0 18px 45px rgba(23, 107, 154, 0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, Aptos, Arial, sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, var(--grey-100) 0%, var(--white) 42%, var(--blue-100) 100%);
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 8%;
+      background: rgba(255, 255, 255, 0.86);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(56, 169, 232, 0.16);
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: 0.2px;
+      color: var(--blue-900);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--blue-700);
+    }
+
+    .hero {
+      min-height: 88vh;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 48px;
+      align-items: center;
+      padding: 72px 8% 56px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 430px;
+      height: 430px;
+      right: -130px;
+      top: 70px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(56, 169, 232, 0.32), rgba(255, 255, 255, 0));
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: var(--blue-100);
+      color: var(--blue-700);
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 6vw, 76px);
+      line-height: 1.03;
+      letter-spacing: -2.4px;
+      color: var(--blue-900);
+      margin-bottom: 24px;
+    }
+
+    .hero p {
+      max-width: 680px;
+      font-size: 18px;
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 22px;
+      border-radius: 14px;
+      font-weight: 750;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .button.primary {
+      background: var(--blue-500);
+      color: var(--white);
+    }
+
+    .button.secondary {
+      background: var(--white);
+      color: var(--blue-700);
+      border: 1px solid var(--grey-300);
+    }
+
+    .profile-card {
+      position: relative;
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid rgba(56, 169, 232, 0.18);
+      border-radius: 32px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .avatar {
+      width: 160px;
+      height: 160px;
+      border-radius: 32px;
+      overflow: hidden;
+      border: 1px solid rgba(56, 169, 232, 0.26);
+      box-shadow: 0 20px 50px rgba(23, 107, 154, 0.18);
+      margin-bottom: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .avatar:hover {
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 28px 70px rgba(23, 107, 154, 0.22);
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 28%;
+      display: block;
+    }
+
+    .profile-card h2 {
+      color: var(--blue-900);
+      font-size: 26px;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .profile-card p {
+      color: var(--muted);
+      margin-bottom: 22px;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .metric {
+      border-radius: 20px;
+      padding: 16px;
+      background: var(--grey-100);
+      border: 1px solid rgba(56, 169, 232, 0.14);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 20px;
+      color: var(--blue-700);
+    }
+
+    .metric span {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    section {
+      padding: 76px 8%;
+    }
+
+    .section-header {
+      max-width: 820px;
+      margin-bottom: 34px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.1;
+      color: var(--blue-900);
+      letter-spacing: -1.2px;
+      margin-bottom: 14px;
+    }
+
+    .section-header p {
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(56, 169, 232, 0.16);
+      border-radius: 26px;
+      padding: 24px;
+      box-shadow: 0 12px 36px rgba(23, 107, 154, 0.08);
+    }
+
+    .card .icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background: var(--blue-100);
+      color: var(--blue-700);
+      margin-bottom: 16px;
+    }
+
+    .icon svg {
+      width: 30px;
+      height: 30px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.9;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .card h3 {
+      color: var(--blue-900);
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .card p, .card li {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .card ul {
+      padding-left: 18px;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 26px;
+      align-items: stretch;
+    }
+
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .pill {
+      background: var(--blue-100);
+      color: var(--blue-700);
+      border: 1px solid rgba(56, 169, 232, 0.2);
+      padding: 9px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 20px;
+      padding: 22px;
+      border-radius: 24px;
+      background: var(--white);
+      border: 1px solid rgba(56, 169, 232, 0.16);
+      box-shadow: 0 10px 30px rgba(23, 107, 154, 0.07);
+    }
+
+    .timeline-item .year {
+      color: var(--blue-700);
+      font-weight: 850;
+    }
+
+    .timeline-item h3 {
+      color: var(--blue-900);
+      margin-bottom: 6px;
+    }
+
+    .timeline-item p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--white);
+      overflow: hidden;
+      border-radius: 24px;
+      box-shadow: 0 12px 34px rgba(23, 107, 154, 0.08);
+    }
+
+    th, td {
+      padding: 18px;
+      text-align: left;
+      border-bottom: 1px solid var(--grey-300);
+      vertical-align: top;
+      font-size: 14px;
+    }
+
+    th {
+      background: var(--blue-100);
+      color: var(--blue-900);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .quote {
+      border-radius: 32px;
+      padding: 42px;
+      background: linear-gradient(135deg, var(--blue-700), var(--blue-500));
+      color: var(--white);
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .quote h2 {
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1.18;
+      margin-bottom: 12px;
+    }
+
+    .quote p {
+      opacity: 0.9;
+    }
+
+    footer {
+      padding: 34px 8%;
+      color: var(--muted);
+      background: var(--white);
+      border-top: 1px solid rgba(56, 169, 232, 0.16);
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 14px;
+    }
+
+    @media (max-width: 920px) {
+      .hero, .split {
+        grid-template-columns: 1fr;
+      }
+
+      .cards {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 620px) {
+      section, .hero, .nav, footer {
+        padding-left: 5%;
+        padding-right: 5%;
+      }
+
+      .cards, .metric-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+
+      table {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="#home">MNA Portfolio</a>
+    <div class="nav-links">
+      <a href="#about">Profil</a>
+      <a href="#values">Value</a>
+      <a href="#career">Karier</a>
+      <a href="#skills">Skill Gap</a>
+      <a href="#roadmap">Roadmap</a>
+    </div>
+  </nav>
+
+  <main id="home" class="hero">
+    <div>
+      <span class="eyebrow">Finance Analytics • Equity Research • Career Roadmap</span>
+      <h1>Muhammad Naufal Akbar</h1>
+      <p>Mahasiswa Manajemen Keuangan Universitas Padjadjaran yang sedang mengembangkan arah karier di bidang finance, data analytics, digital growth, serta memiliki ketertarikan pada kontribusi di BUMN dan dunia akademik.</p>
+      <div class="cta-row">
+        <a class="button primary" href="#career">Lihat Arah Karier</a>
+        <a class="button secondary" href="#skills">Analisis Skill Gap</a>
+      </div>
+    </div>
+
+    <aside class="profile-card" aria-label="Profile summary card">
+      <div class="avatar" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#e7f7ff,#cfeeff);">
+        <svg viewBox="0 0 24 24" width="80" height="80" stroke="#176b9a" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="8" r="4"/>
+          <path d="M4 20c0-4 4-6 8-6s8 2 8 6"/>
+        </svg>
+      </div>
+      <h2>Finance Analytics Talent</h2>
+      <p>Berorientasi pada analytical excellence, institutional impact, dan continuous learning.</p>
+      <div class="metric-grid">
+        <div class="metric"><strong>#1</strong><span>National Equity Research Competition</span></div>
+        <div class="metric"><strong>2x</strong><span>Representasi Bogor KSN Ekonomi</span></div>
+        <div class="metric"><strong>CFO</strong><span>Hima Manajemen 2025</span></div>
+        <div class="metric"><strong>TA</strong><span>Labkom Teaching Assistant</span></div>
+      </div>
+    </aside>
+  </main>
+
+  <section id="about">
+    <div class="section-header">
+      <h2>Profil Singkat</h2>
+      <p>Profil ini disusun untuk menunjukkan keterkaitan antara pengalaman akademik, kompetisi, organisasi, riset, dan eksposur di sektor publik secara lebih terarah.</p>
+    </div>
+    <div class="cards">
+      <article class="card"><div class="icon">01</div><h3>Fondasi Akademik</h3><p>Mahasiswa Manajemen Keuangan Universitas Padjadjaran dengan minat kuat pada finance, mathematics, equity research, financial modeling, dan data driven decision making.</p></article>
+      <article class="card"><div class="icon">02</div><h3>Eksposur Profesional</h3><p>Memiliki pengalaman sebagai CFO Hima Manajemen, Labkom Teaching Assistant, Marketing Manager Kokuto Coffee, dan legislative data support intern DPR RI dengan fokus pada analisis data kebijakan publik dan operasional bisnis.</p></article>
+      <article class="card"><div class="icon">03</div><h3>Target Jangka Panjang</h3><p>Mengarah pada BUMN, studi S2 atau S3, serta kontribusi sebagai dosen, peneliti, atau akademisi di bidang ekonomi dan keuangan.</p></article>
+    </div>
+    <section id="experience">
+    <div class="section-header">
+      <h2>Highlighted Experience</h2>
+      <p>Pengalaman ini memperkuat kombinasi antara analytical capability, business execution, dan exposure pada sektor publik serta komersial.</p>
+    </div>
+    <div class="cards">
+      <article class="card">
+        <div class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V10"/><path d="M19 21V10"/><path d="M2.5 10h19L12 4z"/><path d="M8 21v-7"/><path d="M12 21v-7"/><path d="M16 21v-7"/></svg>
+        </div>
+        <h3>Legislative Data Support Intern</h3>
+        <p>Terlibat dalam mendukung analisis data kebijakan di Komisi VII DPR RI, khususnya pada sektor ekonomi, industri, dan energi. Berkontribusi dalam pengolahan data, penyusunan insight, serta membantu proses pengambilan keputusan yang berbasis data.</p>
+      </article>
+      <article class="card">
+        <div class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M7 8h10l-1 13H8z"/><path d="M6 8h12"/><path d="M8 5h8l1 3H7z"/><path d="M9 12h6"/><path d="M10 16h4"/></svg>
+        </div>
+        <h3>Marketing Manager Kokuto Coffee</h3>
+        <p>Mengelola strategi pemasaran berbasis data untuk meningkatkan brand awareness, customer acquisition, dan revenue. Terlibat dalam optimasi campaign digital, analisis performa penjualan, serta penerapan pendekatan growth dan business operations pada skala UMKM.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="values">
+    <div class="section-header">
+      <h2>Value dan Interest dalam Pekerjaan</h2>
+      <p>Bagi saya, tempat kerja bukan hanya untuk memperoleh pendapatan, tetapi juga ruang belajar yang menantang secara intelektual, berbasis data, dan memiliki dampak nyata.</p>
+    </div>
+    <div class="cards">
+      <article class="card"><div class="icon">↗</div><h3>Peluang Berkembang</h3><p>Rapid learning, feedback berkualitas, dan eksposur pada masalah bisnis nyata.</p></article>
+      <article class="card"><div class="icon">∑</div><h3>Tantangan Intelektual</h3><p>Analisis angka, struktur logika, financial modeling, dan problem solving berbasis data.</p></article>
+      <article class="card"><div class="icon">◎</div><h3>Dampak Ekonomi</h3><p>Kontribusi terhadap pengambilan keputusan ekonomi yang lebih baik untuk organisasi dan masyarakat.</p></article>
+      <article class="card"><div class="icon">▣</div><h3>Stabilitas Institusi</h3><p>Tata kelola, reputasi, kredibilitas institusi, dan jalur pengembangan karier yang jelas.</p></article>
+      <article class="card"><div class="icon">◆</div><h3>Meritokrasi</h3><p>Lingkungan kolaboratif yang menilai kualitas kontribusi lebih tinggi daripada senioritas formal.</p></article>
+      <article class="card"><div class="icon">⇄</div><h3>Career Mobility</h3><p>Kompensasi tetap penting, namun harus sejalan dengan learning curve dan mobilitas karier.</p></article>
+    </div>
+  </section>
+
+  <section id="industry">
+    <div class="split">
+      <div class="section-header">
+        <h2>Industri Pilihan</h2>
+        <p>Digital business, e commerce, dan finance analytics dipilih karena mempertemukan finance, matematika, strategi bisnis, dan teknologi dalam satu lintasan karier.</p>
+        <div class="pill-list">
+          <span class="pill">Finance Analytics</span>
+          <span class="pill">Growth Strategy</span>
+          <span class="pill">Business Operations</span>
+          <span class="pill">E-commerce Analytics</span>
+          <span class="pill">Corporate Finance</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Company Fit: ByteDance atau TikTok</h3>
+        <p>ByteDance atau TikTok relevan karena memiliki budaya kerja cepat, global, berbasis data, dan menuntut ownership tinggi. Perusahaan ini dapat menjadi strategic stepping stone untuk membangun growth mindset, analytical execution, dan business ownership sebelum memasuki BUMN, corporate finance, atau studi lanjut.</p>
+        <div class="pill-list">
+          <span class="pill">TikTok</span>
+          <span class="pill">CapCut</span>
+          <span class="pill">TikTok Shop</span>
+          <span class="pill">Lark</span>
+          <span class="pill">Pico</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="career">
+    <div class="section-header">
+      <h2>Target Peran Karier</h2>
+      <p>Target jangka pendek saya berfokus pada peran yang menggabungkan finance, analytics, business strategy, serta komunikasi profesional.</p>
+    </div>
+    <div class="cards">
+      <article class="card"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M7 16l4-4 3 3 5-7"/><path d="M16 8h3v3"/></svg></div><h3>Growth Business Analyst Intern</h3><p>Menganalisis funnel, CAC, LTV, retention, conversion, dan eksperimen pertumbuhan bisnis.</p></article>
+      <article class="card"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/><circle cx="8" cy="7" r="2"/><circle cx="16" cy="12" r="2"/><circle cx="10" cy="17" r="2"/></svg></div><h3>Business Operations Intern</h3><p>Menghubungkan data operasional, revenue drivers, proses bisnis, dan rekomendasi eksekusi.</p></article>
+      <article class="card"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M14 3v4h4"/><path d="M9 14h6"/><path d="M9 18h3"/><path d="M9 10h1"/><path d="M13 10h1"/></svg></div><h3>Finance Analyst Intern</h3><p>Membangun model keuangan, budgeting, forecasting, dan analisis performa berbasis KPI.</p></article>
+      <article class="card"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 21h16"/><path d="M6 21V8h5v13"/><path d="M13 21V3h5v18"/><path d="M8 11h1"/><path d="M8 15h1"/><path d="M15 7h1"/><path d="M15 11h1"/><path d="M15 15h1"/></svg></div><h3>Corporate Finance Intern</h3><p>Mendukung capital allocation, valuation, strategic planning, dan investment analysis.</p></article>
+      <article class="card"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="10" cy="10" r="5"/><path d="M14 14l5 5"/><path d="M8 10h4"/><path d="M10 8v4"/></svg></div><h3>Research Assistant</h3><p>Memperkuat metodologi riset, literature review, ekonometrika, dan kredibilitas akademik.</p></article>
+      <article class="card"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6l8-3 8 3-8 3z"/><path d="M7 9v5c0 2 10 2 10 0V9"/><path d="M20 7v5"/></svg></div><h3>Teaching Assistant</h3><p>Mengembangkan kemampuan mengajar, menyusun materi, dan menyampaikan konsep kuantitatif.</p></article>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-header">
+      <h2>Skill Gap Analysis</h2>
+      <p>Pengembangan difokuskan pada kemampuan yang dapat meningkatkan daya saing sekaligus menghasilkan bukti kerja yang jelas dan terukur.</p>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Skill</th>
+          <th>Mengapa Penting</th>
+          <th>Kondisi Saat Ini</th>
+          <th>Langkah Pengembangan</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Financial Modeling dan Valuation</td><td>Relevan untuk equity research, corporate finance, dan investment analysis.</td><td>Sudah memiliki pengalaman equity research, tetapi perlu standar model profesional.</td><td>Membuat 3 statement model, DCF, sensitivity analysis, dan stock pitch.</td></tr>
+        <tr><td>Advanced Excel dan Dashboard</td><td>Penting untuk budgeting, forecasting, reporting, dan KPI monitoring.</td><td>Perlu output dashboard yang lebih rapi dan siap dipresentasikan.</td><td>Latihan Power Query, pivot table, scenario manager, dan dashboard KPI.</td></tr>
+        <tr><td>SQL atau Python Dasar</td><td>Penting untuk analytics role dan pengolahan data besar.</td><td>Belum menjadi bukti teknis utama dalam portfolio.</td><td>Membuat proyek analisis saham IDX, macro dashboard, atau cohort analysis.</td></tr>
+        <tr><td>Growth Analytics</td><td>Krusial untuk e commerce dan business operations.</td><td>Memiliki pengalaman marketing, tetapi perlu pembuktian kuantitatif.</td><td>Belajar funnel analysis, CAC, LTV, retention, conversion, dan A/B testing.</td></tr>
+        <tr><td>Research Methodology dan Econometrics</td><td>Penting untuk S2, S3, thesis, publikasi, dan jalur akademik.</td><td>Memiliki minat akademik dan pengalaman teaching assistant.</td><td>Belajar Stata, R, Python, econometrics, literature review, dan working paper.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="portfolio">
+    <div class="section-header">
+      <h2>Strategi Sertifikasi dan Portfolio</h2>
+      <p>Sertifikasi dipilih berdasarkan dampak langsung terhadap kesiapan kerja, bukan hanya dari sisi prestige.</p>
+    </div>
+    <div class="cards">
+      <article class="card"><div class="icon">1</div><h3>Financial Modeling atau FMVA</h3><p>Prioritas pertama karena langsung menghasilkan DCF model, equity research report, dashboard keuangan, dan pitch deck.</p></article>
+      <article class="card"><div class="icon">2</div><h3>CFA Level I</h3><p>Target berikutnya untuk membangun kredibilitas jangka panjang di investment analysis, portfolio management, dan ethics.</p></article>
+      <article class="card"><div class="icon">3</div><h3>CSA atau Sertifikasi Pasar Modal</h3><p>Opsional untuk memperkuat kredibilitas domestik, dengan catatan eligibility dan relevansi perlu dicek sebelum mendaftar.</p></article>
+    </div>
+  </section>
+
+  <section id="roadmap">
+    <div class="section-header">
+      <h2>Career Guidepost 2026 sampai 2035</h2>
+      <p>Roadmap ini disusun secara bertahap agar tetap visioner namun realistis, dimulai dari pengembangan portfolio dan internship hingga kontribusi akademik atau institusional.</p>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item"><div class="year">Semester 6 sampai lulus</div><div><h3>Technical Skill, Portfolio, Internship</h3><p>Menyelesaikan financial model, equity research report, dashboard, dan aplikasi internship di ByteDance, TikTok, BUMN, securities, asset management, atau consulting related role.</p></div></div>
+      <div class="timeline-item"><div class="year">0 sampai 2 tahun</div><div><h3>Pengalaman Kerja Pertama</h3><p>Menargetkan finance analyst, business analyst, growth analyst, corporate finance analyst, atau strategic planning analyst.</p></div></div>
+      <div class="timeline-item"><div class="year">3 sampai 5 tahun</div><div><h3>Spesialisasi dan Institutional Exposure</h3><p>Mengarah pada BUMN, financial institution, corporate strategy, atau role dengan exposure capital allocation dan investment analysis.</p></div></div>
+      <div class="timeline-item"><div class="year">5 sampai 8 tahun</div><div><h3>S2 dengan Beasiswa</h3><p>Memilih MSc Finance, Financial Economics, Applied Economics, Quantitative Finance, Data Science for Business, atau Public Policy.</p></div></div>
+      <div class="timeline-item"><div class="year">8 tahun ke atas</div><div><h3>Akademisi atau Institutional Leader</h3><p>Membangun kontribusi melalui S3, pengajaran, penelitian, BUMN, pasar modal, atau kebijakan ekonomi Indonesia.</p></div></div>
+    </div>
+  </section>
+
+  <section id="risk">
+    <div class="section-header">
+      <h2>Risiko dan Mitigasi</h2>
+      <p>Salah satu risiko utama adalah profil yang terlalu luas. Oleh karena itu, finance analytics digunakan sebagai benang merah untuk menyatukan pengalaman, portfolio, dan roadmap.</p>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Risiko</th>
+          <th>Dampak</th>
+          <th>Mitigasi</th>
+          <th>Indikator Keberhasilan</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Profil terlalu luas</td><td>Recruiter sulit membaca positioning.</td><td>Gunakan narasi finance analytics.</td><td>CV dan LinkedIn memiliki benang merah jelas.</td></tr>
+        <tr><td>Skill teknis belum cukup kuat</td><td>Sulit bersaing untuk analytics atau finance role.</td><td>Buat portfolio model dan dashboard.</td><td>Minimal tiga portfolio selesai sebelum lulus.</td></tr>
+        <tr><td>Sertifikasi diambil tanpa kesiapan</td><td>Waktu dan biaya tidak efisien.</td><td>Prioritaskan sertifikasi yang memberi output langsung.</td><td>Financial modeling atau FMVA sebelum CFA Level I.</td></tr>
+        <tr><td>Workload magang tinggi</td><td>Risiko burnout dan performa turun.</td><td>Manajemen waktu dan evaluasi mingguan.</td><td>Project magang selesai dengan measurable impact.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <div class="quote">
+      <h2>Analytical Excellence, Institutional Impact, Continuous Learning.</h2>
+      <p>Karier yang dibangun harus menggabungkan ketajaman analitis, kontribusi nyata, dan disiplin belajar berkelanjutan.</p>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Muhammad Naufal Akbar</span>
+    <span>Finance Analytics Career Portfolio</span>
+  </footer>
+</body>
+</html>
